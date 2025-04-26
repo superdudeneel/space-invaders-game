@@ -4,6 +4,12 @@ let boardwidth = 1400;
 
 let context;
 
+let gamesound;
+let lasersound;
+let collisionsound;
+
+
+
 let playerheight = 70;
 let playerwidth = 90;
 let playerX = boardwidth/2;
@@ -80,6 +86,12 @@ window.onload = function(){
     board.width = boardwidth;
     context = board.getContext('2d');
 
+    
+    gamesound = new Audio('audio/space-station-247790.mp3');
+    lasersound = new Audio("audio/laser.wav");
+    collisionsound = new Audio('audio/explosion.wav');
+
+
 
     playerimg = new Image();
     playerimg.src = "assets/player.png";
@@ -133,6 +145,9 @@ function update(){
 
     context.clearRect(0, 0, board.width, board.height);
 
+    gamesound.play();
+
+
     if(gameover){
         context.fillStyle = 'white';
         context.font = '60px sans-serif';
@@ -140,11 +155,6 @@ function update(){
         
 
         return;
-    }
-
-    if(keys[' ']){
-        gameover = false;
-
     }
     
 
@@ -200,6 +210,8 @@ function update(){
         for (let j = 0; j < meteorarray.length; j++) {
             let meteor = meteorarray[j];
             if (detectcollision(laser, meteor)) {
+                collisionsound.play();
+
                 meteorarray.splice(j, 1);
                 laserarray.splice(i, 1);
                 i--; 
@@ -259,5 +271,7 @@ function laser_draw(){
 
     }
     laserarray.push(laser);
+    lasersound.play();
+
 }
 
