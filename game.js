@@ -87,9 +87,9 @@ window.onload = function(){
     context = board.getContext('2d');
 
     
-    gamesound = new Audio('audio/space-station-247790.mp3');
-    lasersound = new Audio("audio/laser.wav");
-    collisionsound = new Audio('audio/explosion.wav');
+    gamesound = new Audio('space-station-247790.mp3');
+    lasersound = new Audio("laser.wav");
+    collisionsound = new Audio('explosion.wav');
 
 
 
